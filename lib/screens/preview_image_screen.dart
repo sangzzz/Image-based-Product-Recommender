@@ -1,10 +1,23 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:recommender/widgets/reusable_tile.dart';
 import 'package:recommender/widgets/rounded_button.dart';
+import 'package:recommender/models/get_classification.dart';
 
 class PreviewImageScreen extends StatelessWidget {
   const PreviewImageScreen({Key key, this.path}) : super(key: key);
   final String path;
+
+  List<ReusableTile> getClassificationsURL() {
+    List<ReusableTile> classificationsList = [];
+    for (String classification in Classification.getClassifications(path)) {
+      classificationsList.add(
+        ReusableTile(classification: classification),
+      );
+    }
+    return classificationsList;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +46,23 @@ class PreviewImageScreen extends StatelessWidget {
                   RoundedButton(
                     color: Colors.teal,
                     text: 'Search',
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        elevation: 20.0,
+                        backgroundColor: Colors.black45,
+                        builder: (context) => LayoutBuilder(
+                          builder: (context, BoxConstraints constraints) =>
+                              Container(
+                            height: constraints.maxHeight / 1.5,
+                            color: Colors.black54,
+                            child: ListView(
+                              children: getClassificationsURL(),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

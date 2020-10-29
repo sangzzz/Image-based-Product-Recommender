@@ -54,7 +54,8 @@ class _CameraScreenState extends State<CameraScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => PreviewImageScreen(path: path),),
+              builder: (context) => PreviewImageScreen(path: path),
+            ),
           );
         } catch (e) {
           print(e);
@@ -62,6 +63,8 @@ class _CameraScreenState extends State<CameraScreen> {
       },
     );
     return Scaffold(
+      extendBody: true,
+      extendBodyBehindAppBar: true,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
