@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:recommender/models/constants.dart';
+import 'package:recommender/models/write_feedback.dart';
 import 'package:recommender/widgets/alert_dialog_button.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class FeedbackScreen extends StatefulWidget {
-  FeedbackScreen({Key key}) : super(key: key);
-
+  FeedbackScreen(
+      {Key key, @required this.path, @required this.appRecommendation})
+      : super(key: key);
+  final String path;
+  final String appRecommendation;
   @override
   _FeedbackScreenState createState() => _FeedbackScreenState();
 }
@@ -83,8 +87,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       height: 40.0,
                     ),
                     FlatButton(
-                      onPressed: () {
+                      onPressed: () async {
                         controller.clear();
+                        await addToFile(
+                          path: widget.path,
+                          appRecommendation: widget.appRecommendation,
+                          suggestedRecommendation: newValue,
+                        );
                         Alert(
                           onWillPopActive: true,
                           context: context,

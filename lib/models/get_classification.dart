@@ -15,4 +15,12 @@ class Classification {
     print(path);
     return _classifications;
   }
+
+  static int getItemCount() {
+    return _classifications.length;
+  }
+
+  static String getClassificationAtIndex(int index) {
+    return _classifications[index];
+  }
 }

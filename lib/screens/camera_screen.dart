@@ -23,6 +23,7 @@ class _CameraScreenState extends State<CameraScreen> {
     _controller = CameraController(
       widget.camera,
       ResolutionPreset.medium,
+      enableAudio: false,
     );
     _initializeControllerFuture = _controller.initialize();
   }
@@ -30,7 +31,7 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
-    FutureBuilder futureBuilder = FutureBuilder(
+    FutureBuilder cameraBuilder = FutureBuilder(
       future: _initializeControllerFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
@@ -71,7 +72,7 @@ class _CameraScreenState extends State<CameraScreen> {
         children: [
           Expanded(
             flex: 5,
-            child: futureBuilder,
+            child: cameraBuilder,
           ),
           Expanded(
             flex: 1,

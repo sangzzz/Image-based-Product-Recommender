@@ -8,8 +8,11 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 
 class RecommendationScreen extends StatefulWidget {
   final String link;
+  final String path;
 
-  const RecommendationScreen({Key key, @required this.link}) : super(key: key);
+  const RecommendationScreen(
+      {Key key, @required this.link, @required this.path})
+      : super(key: key);
   @override
   _RecommendationScreenState createState() => _RecommendationScreenState();
 }
@@ -55,7 +58,10 @@ class _RecommendationScreenState extends State<RecommendationScreen>
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => FeedbackScreen(),
+                    builder: (context) => FeedbackScreen(
+                      path: widget.path,
+                      appRecommendation: widget.link,
+                    ),
                   ),
                 );
               },

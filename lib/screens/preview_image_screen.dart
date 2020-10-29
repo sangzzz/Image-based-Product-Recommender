@@ -9,10 +9,11 @@ class PreviewImageScreen extends StatelessWidget {
   final String path;
 
   List<ReusableTile> getClassificationsURL() {
+    // AnimatedList();
     List<ReusableTile> classificationsList = [];
     for (String classification in Classification.getClassifications(path)) {
       classificationsList.add(
-        ReusableTile(classification: classification),
+        ReusableTile(classification: classification, path: path,),
       );
     }
     return classificationsList;
@@ -37,14 +38,14 @@ class PreviewImageScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   RoundedButton(
-                    color: Colors.pink.shade800,
+                    color: Color(0XFFEB1555),
                     text: 'Retake',
                     onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
                   RoundedButton(
-                    color: Colors.teal,
+                    color: Colors.green,
                     text: 'Search',
                     onPressed: () {
                       showModalBottomSheet(
@@ -55,7 +56,6 @@ class PreviewImageScreen extends StatelessWidget {
                           builder: (context, BoxConstraints constraints) =>
                               Container(
                             height: constraints.maxHeight / 1.5,
-                            color: Colors.black54,
                             child: ListView(
                               children: getClassificationsURL(),
                             ),
