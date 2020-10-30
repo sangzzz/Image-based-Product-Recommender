@@ -17,7 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.light().copyWith(primaryColor: Colors.blueGrey),
+      theme: ThemeData(
+        primaryColor: Colors.blueGrey,
+        accentColor: Colors.grey.shade700,
+      ),
       home: CameraScreen(
         camera: camera,
       ),

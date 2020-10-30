@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:recommender/widgets/reusable_tile.dart';
 import 'package:recommender/widgets/rounded_button.dart';
 import 'package:recommender/models/get_classification.dart';
@@ -8,15 +9,12 @@ class PreviewImageScreen extends StatelessWidget {
   const PreviewImageScreen({Key key, this.path}) : super(key: key);
   final String path;
 
-  List<ReusableTile> getClassificationsURL() {
-    // AnimatedList();
-    List<ReusableTile> classificationsList = [];
-    for (String classification in Classification.getClassifications(path)) {
-      classificationsList.add(
-        ReusableTile(classification: classification, path: path,),
-      );
-    }
-    return classificationsList;
+  ReusableTile getClassificationsURL(int index) {
+    ReusableTile classification = ReusableTile(
+      classification: Classification.getClassificationAtIndex(index),
+      path: path,
+    );
+    return classification;
   }
 
   @override
@@ -56,8 +54,18 @@ class PreviewImageScreen extends StatelessWidget {
                           builder: (context, BoxConstraints constraints) =>
                               Container(
                             height: constraints.maxHeight / 1.5,
-                            child: ListView(
-                              children: getClassificationsURL(),
+                            child: ListView.builder(
+                              itemCount: Classification.getItemCount(),
+                              itemBuilder: (context, index) =>
+                                  AnimationConfiguration.staggeredList(
+                                position: index,
+                                duration: Duration(milliseconds: 800),
+                                child: FlipAnimation(
+                                  child: SlideAnimation(
+                                    child: getClassificationsURL(index),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),

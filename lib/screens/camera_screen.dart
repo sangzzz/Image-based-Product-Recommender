@@ -12,9 +12,14 @@ class CameraScreen extends StatefulWidget {
   _CameraScreenState createState() => _CameraScreenState();
 }
 
-class _CameraScreenState extends State<CameraScreen> {
+class _CameraScreenState extends State<CameraScreen>
+    with SingleTickerProviderStateMixin {
   CameraController _controller;
   Future<void> _initializeControllerFuture;
+  AnimationController animationController;
+  Animation<Color> animation1;
+  Animation<int> animation2;
+  Color color = Colors.white;
   @override
   void initState() {
     SystemChrome.setEnabledSystemUIOverlays([]);
@@ -26,6 +31,21 @@ class _CameraScreenState extends State<CameraScreen> {
       enableAudio: false,
     );
     _initializeControllerFuture = _controller.initialize();
+    animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 2500));
+    animation1 = ColorTween(begin: Colors.black87, end: Colors.black)
+        .animate(animationController);
+    animationController.forward();
+    animationController.addListener(() {
+      setState(() {});
+    });
+    animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        animationController.reverse(from: 1);
+      } else if (status == AnimationStatus.dismissed) {
+        animationController.forward(from: 0);
+      }
+    });
   }
 
   @override
@@ -42,8 +62,13 @@ class _CameraScreenState extends State<CameraScreen> {
       },
     );
     FloatingActionButton cameraCapture = FloatingActionButton(
-      child: Icon(Icons.camera),
-      backgroundColor: Colors.grey.withAlpha(100),
+      child: GestureDetector(
+        child: Icon(
+          Icons.camera,
+          color: Colors.grey.shade200,
+          size: 35 + 10 * animationController.value,
+        ),
+      ),
       onPressed: () async {
         try {
           await _initializeControllerFuture;
@@ -77,7 +102,7 @@ class _CameraScreenState extends State<CameraScreen> {
           Expanded(
             flex: 1,
             child: Container(
-              color: Colors.black87,
+              color: animation1.value,
               child: Center(
                 child: cameraCapture,
               ),
@@ -91,6 +116,7 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   void dispose() {
     _controller.dispose();
+    animationController.dispose();
     super.dispose();
   }
 }

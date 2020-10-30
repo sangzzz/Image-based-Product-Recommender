@@ -12,12 +12,12 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: Container(
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.all(
-            Radius.circular(15.0),
+            Radius.circular(18.0),
           ),
         ),
         child: FlatButton(
@@ -27,7 +27,11 @@ class RoundedButton extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               text,
-              style: TextStyle(color: Colors.white, fontSize: 20.0),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20.0,
+                fontFamily: 'Itim',
+              ),
             ),
           ),
         ),

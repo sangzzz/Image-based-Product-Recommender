@@ -11,6 +11,14 @@ const AlertStyle kAlertStyle = AlertStyle(
   animationDuration: Duration(milliseconds: 500),
   animationType: AnimationType.grow,
   overlayColor: Colors.black45,
+  descStyle: TextStyle(
+    fontWeight: FontWeight.normal,
+    fontFamily: 'Itim',
+  ),
+  titleStyle: TextStyle(
+    fontSize: 22.0,
+    fontFamily: 'Reem',
+  ),
 );
 
 const String url =
@@ -20,5 +28,6 @@ const String apiKey = 'AIzaSyDBA-d2hVucY-QXcf8UuYX0pVA9XskoWnE';
 const TextStyle kFeedbackTextStyle = TextStyle(
   color: Colors.grey,
   fontStyle: FontStyle.italic,
+  fontFamily: 'SourceSans',
   fontSize: 20.0,
 );

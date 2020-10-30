@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:progress_indicators/progress_indicators.dart';
 import 'package:recommender/models/constants.dart';
 import 'package:recommender/screens/feedback_screen.dart';
 import 'package:recommender/widgets/alert_dialog_button.dart';
@@ -44,7 +46,6 @@ class _RecommendationScreenState extends State<RecommendationScreen>
               "Your valuable feedback will help us improve this service. Was the recommendation to your satisfaction?",
           buttons: [
             reusableAlertDialogButton(
-              context: context,
               text: 'YES',
               color: Colors.green,
               onPressed: () {
@@ -52,7 +53,6 @@ class _RecommendationScreenState extends State<RecommendationScreen>
               },
             ),
             reusableAlertDialogButton(
-              context: context,
               text: 'NO',
               color: Color(0XFFEB1555),
               onPressed: () {
@@ -100,10 +100,16 @@ class _RecommendationScreenState extends State<RecommendationScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: CircularProgressIndicator(),
+            child: GlowingProgressIndicator(
+              child: SpinKitFadingCube(
+                size: 20.0,
+                color: Colors.white,
+                duration: Duration(milliseconds: 500),
+              ),
+            ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 30.0,
           ),
           Center(
             child: TypewriterAnimatedTextKit(
@@ -111,7 +117,9 @@ class _RecommendationScreenState extends State<RecommendationScreen>
               repeatForever: true,
               speed: Duration(milliseconds: 400),
               textStyle: kCardTextStyle.copyWith(
-                fontSize: 30.0,
+                fontSize: 20.0,
+                color: Colors.white,
+                fontFamily: 'Itim',
                 decoration: TextDecoration.none,
               ),
             ),

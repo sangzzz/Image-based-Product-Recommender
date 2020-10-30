@@ -19,6 +19,10 @@ dependencies:
   url_launcher: ^5.7.8
   rflutter_alert: ^1.1.0
   animated_text_kit: ^2.5.1
+  progress_indicators: ^0.1.5
+  flutter_staggered_animations: ^0.1.2
+  font_awesome_flutter: ^8.10.0
+  flutter_spinkit: ^4.1.2+1
 
 dev_dependencies:
   flutter_test:
@@ -26,4 +30,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  
+  fonts:
+    - family: Itim
+      fonts:
+        - asset: fonts/Itim-regular.ttf
+    - family: Reem
+      fonts:
+        - asset: fonts/ReemKufi-Regular.ttf
+    - family: SourceSans
+      fonts:
+        - asset: fonts/SourceSansPro.ttf
