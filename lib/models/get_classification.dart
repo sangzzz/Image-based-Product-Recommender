@@ -1,19 +1,7 @@
 class Classification {
-  static List<String> _classifications = [
-    'mobile phone',
-    'book',
-    'tablet',
-    'phone',
-    'book',
-    'tablet',
-    'phone',
-    'book',
-    'tablet',
-    'bottle'
-  ];
-  static List<String> getClassifications(String path) {
-    print(path);
-    return _classifications;
+  static List<dynamic> _classifications = [];
+  static void updateClassifications(List<dynamic> classifications) {
+    _classifications = classifications;
   }
 
   static int getItemCount() {
@@ -21,6 +9,6 @@ class Classification {
   }
 
   static String getClassificationAtIndex(int index) {
-    return _classifications[index];
+    return _classifications[index]['label'].toString();
   }
 }

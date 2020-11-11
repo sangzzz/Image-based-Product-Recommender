@@ -25,7 +25,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         child: LayoutBuilder(
           builder: (context, BoxConstraints constraints) {
             return Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(10.0),
               child: Container(
                 constraints: BoxConstraints(
                   maxHeight: constraints.maxHeight / 2,
