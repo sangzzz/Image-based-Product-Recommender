@@ -9,20 +9,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.0
-  provider: ^4.3.2+2
-  camera: ^0.5.8+11
-  path_provider: ^1.6.22
-  path: ^1.7.0
-  modal_bottom_sheet: ^0.2.2
-  http: ^0.12.2
-  url_launcher: ^5.7.8
-  rflutter_alert: ^1.1.0
   animated_text_kit: ^2.5.1
-  progress_indicators: ^0.1.5
+  camera: ^0.5.8+11
+  cupertino_icons: ^1.0.0
+  flutter_spinkit: ^4.1.2+1
   flutter_staggered_animations: ^0.1.2
   font_awesome_flutter: ^8.10.0
-  flutter_spinkit: ^4.1.2+1
+  http: ^0.12.2
+  modal_bottom_sheet: ^0.2.2
+  path: ^1.7.0
+  path_provider: ^1.6.22
+  progress_indicators: ^0.1.5
+  provider: ^4.3.2+2
+  rflutter_alert: ^1.1.0
+  tflite: ^1.1.1
+  url_launcher: ^5.7.8
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +31,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+   - assets/tflite_model/mobilenet_v2_1.0_224.tflite
+   - assets/tflite_model/labels.txt
   fonts:
     - family: Itim
       fonts:
