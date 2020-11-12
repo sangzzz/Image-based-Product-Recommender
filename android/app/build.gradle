@@ -57,6 +57,9 @@ android {
         noCompress 'tflite'
         noCompress 'lite'
     }
+    lintOptions {
+        checkReleaseBuilds false
+    }
 }
 
 flutter {
