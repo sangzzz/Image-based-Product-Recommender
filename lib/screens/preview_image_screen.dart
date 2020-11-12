@@ -65,6 +65,12 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
   }
 
   @override
+  void dispose() {
+    File(widget.path).delete();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -92,7 +98,7 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
                   RoundedButton(
                     color: Colors.green,
                     text: 'Search',
-                    onPressed: () async {
+                    onPressed: () {
                       showModalBottomSheet<dynamic>(
                         context: context,
                         isScrollControlled: true,
